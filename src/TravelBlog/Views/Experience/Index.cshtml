@@ -4,35 +4,30 @@
     ViewData["Title"] = "Experience";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Experiences</h2>
-<hr />
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th></th>
-    </tr>
-
+<h2 class="list-header">Experiences I've had</h2>
+<div class="list-container">
     @foreach (var listExperience in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelExperience => listExperience.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelExperience => listExperience.Location.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = listExperience.ExperienceId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = listExperience.ExperienceId }) |
-                @Html.ActionLink("Details", "Details", new { id = listExperience.ExperienceId })
-            </td>
-        </tr>
+        <div class="panel panel-default item-panel">
+            <div class="panel-body">
+                <p class="location-name">
+                    @Html.DisplayFor(modelExperience => listExperience.Description)
+                </p>
+                <div class="btn-box">
+                    <button class="btn btn-sm">
+                        @Html.ActionLink("Details", "Details", new { id = listExperience.ExperienceId })
+                    </button>
+                    <button class="btn btn-sm">
+                        @Html.ActionLink("Edit", "Edit", new { id = listExperience.ExperienceId })
+                    </button>
+                    <button class="btn btn-sm">
+                        @Html.ActionLink("Delete", "Delete", new { id = listExperience.ExperienceId })
+                    </button>
+                </div>
+            </div>
+        </div>
     }
-</table>
-<p>@Html.ActionLink("Add new experience", "Create")</p>
-<p>@*@Html.ActionLink("Return to list view", "Index")*@</p>
+</div>
+<p class="text-center">
+    <button class="btn btn-lg">@Html.ActionLink("Add new experience", "Create")</button>
+</p>

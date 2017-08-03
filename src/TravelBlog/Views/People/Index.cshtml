@@ -4,8 +4,8 @@
     ViewData["Title"] = "People";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>People</h2>
-<hr />
+<h2 class="list-header">People I've met</h2>
+@*<hr />
 <table class="table">
     <tr>
         <th>
@@ -28,6 +28,31 @@
             </td>
         </tr>
     }
-</table>
-<p>@Html.ActionLink("Add new person", "Create")</p>
-@*<p>@Html.ActionLink("Return to list view", "Index", "Location")</p>*@
+</table>*@
+<div class="list-container">
+    @foreach (var listPeople in Model)
+    {
+        <div class="panel panel-default item-panel">
+            <div class="panel-body">
+                <p class="location-name">
+                    @Html.DisplayFor(modelPeople => listPeople.Description)
+                </p>
+                <div class="btn-box">
+                    <button class="btn btn-sm">
+                        @Html.ActionLink("Details", "Details", new { id = listPeople.PeopleId })
+                    </button>
+                    <button class="btn btn-sm">
+                        @Html.ActionLink("Edit", "Edit", new { id = listPeople.PeopleId })
+                    </button>
+                    <button class="btn btn-sm">
+                        @Html.ActionLink("Delete", "Delete", new { id = listPeople.PeopleId })
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<p class="text-center">
+    <button class="btn btn-lg">@Html.ActionLink("Add new person", "Create")</button>
+</p>
